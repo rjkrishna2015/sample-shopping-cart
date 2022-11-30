@@ -1,1 +1,0 @@
-mongodb://localhost:27017/shopping_cart?retryWrites=true&w=majority
