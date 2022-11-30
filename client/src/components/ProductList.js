@@ -11,6 +11,8 @@ import Alert from "react-bootstrap/Alert";
 import ProductPagination from "./ProductPagination";
 import ProductCartQnt from "./ProductCartQnt";
 import { addDefaultProductImgSrc } from "../helper/helper";
+import { isMobile } from "react-device-detect";
+import { API_PATH } from "../config/config";
 
 export default function ItemList(props) {
   //Product and Pagination States
@@ -37,7 +39,7 @@ export default function ItemList(props) {
   };
 
   const fetchAllProducts = async () => {
-    let res = await fetch("http://localhost:8759/getallproducts");
+    let res = await fetch(API_PATH);
     let tmpArr = await res.json();
 
     // Adding cartQnt element for managing selected product quantity
@@ -120,8 +122,11 @@ export default function ItemList(props) {
   return (
     <div>
       <Container fluid className="mt-2">
-        <Alert variant="info" className="my-2 d-flex align-items-center">
-          <div className="wd-15">
+        <Alert
+          variant="info"
+          className={!isMobile ? "my-2 d-flex align-items-center" : ""}
+        >
+          <div className={!isMobile ? "wd-15" : ""}>
             <Form.Select
               onChange={(e) => doSort(e.target.value)}
               defaultValue="priceLowToHigh"
@@ -130,10 +135,10 @@ export default function ItemList(props) {
               <option value="priceHighToLow">Price: High to Low</option>
             </Form.Select>
           </div>
-          <div className="wd-60 text-center">
+          <div className={!isMobile ? "wd-60 text-center" : "my-2"}>
             <b>{products.length} Products Available</b>
           </div>
-          <div className="wd-25">
+          <div className={!isMobile ? "wd-25" : ""}>
             <Form.Control
               type="text"
               placeholder="Search by Title or SKU"
@@ -149,7 +154,7 @@ export default function ItemList(props) {
             <Row>
               {visibleProductList.map((item) => {
                 return (
-                  <Col xs={6} md={4} key={item.id}>
+                  <Col xs={12} md={4} key={item.id}>
                     <Card className="mb-2">
                       <div className="centerflex">
                         <Card.Img

@@ -16,6 +16,7 @@
 /* HeaderBar */
 /* CartCounter */
 .cartcounterwrapper {
+  margin-left: auto;
   position: relative;
   cursor: pointer;
 }
@@ -90,6 +91,16 @@
 .paginationfloat {
   float: right;
 }
+.paginationwrapper {
+  width: 95%;
+  position: absolute;
+  overflow-x: auto;
+}
+.paginationresponsive {
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
+}
 /* ProductPagination */
 
 .centerflex {
@@ -105,4 +116,13 @@
 }
 .wd-25 {
   width: 25%;
+}
+
+@media only screen and (max-width: 600px) {
+  .productlistcardimg {
+    height: 25vw !important;
+  }
+  .cartitemsimage {
+    height: 16vw !important;
+  }
 }
